@@ -271,16 +271,56 @@ void Sudoku::changeNum(int a, int b){
     //display();
    // cout << "a" << a<<endl;
     //cout <<  "b"  << b<< endl;
-    int row_a;
-    int col_a;
+   // int row_a;
+    //int col_a;
 
     //要填在原本a的位置上
-    int row_b;
-    int col_b;
-    int curr_row;
-    int curr_col;
+    //int row_b;
+   // int col_b;
+   int a_x[9];
+   int a_y[9];
+   int counta=0;
 
-    for(int brow=0;brow<3;brow++){
+   int b_x[9];
+   int b_y[9];
+   int countb=0;
+
+   for(int i=0;i<9;i++){
+
+    for(int j=0;j<9;j++){
+
+        if(map[i][j]==a){
+
+            a_x[counta] = i;
+            a_y[counta++] =j;
+
+        }
+
+        if(map[i][j]==b){
+
+            b_x[countb] = i;
+            b_y[countb++] =j;
+
+        }
+
+    }
+
+    for(int i=0;i<counta;i++)
+       map[a_x[i]][a_y[i]] = b;
+
+     for(int i=0;i<countb;i++)
+       map[b_x[i]][b_y[i]] = a;
+
+
+
+   }
+
+
+
+
+
+
+   /*for(int brow=0;brow<3;brow++){
         for(int bcol=0;bcol<3;bcol++){
             for(int row=0;row<3;row++){
                 for(int col=0;col<3;col++){
@@ -306,7 +346,7 @@ void Sudoku::changeNum(int a, int b){
             map[row_b][col_b] = b;
 
         }
-    }
+    }*/
 }
 
 
