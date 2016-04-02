@@ -18,7 +18,6 @@ public:
     void display(int a[9][9]);
     void initialize();
     int findValue(int array[],int row, int col);
-    bool checkIsFull();
     bool isCorrect();
 
 
