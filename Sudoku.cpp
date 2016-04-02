@@ -9,7 +9,6 @@ void Sudoku::giveQuestion(){
 
     unsigned int seed = time(NULL);
     srand(seed);
-    //vector<int> candidate ={1,2,3,4,5,6,7,8,9};
     int output[9][9];
     int candidate[9] = {1,2,3,4,5,6,7,8,9};
     int count =0;
@@ -60,7 +59,7 @@ void Sudoku::giveQuestion(){
     int grid_y;
 
     //挖74個洞
-    for(int i=0;i<70;i++){
+    for(int i=0;i<65;i++){
         grid_x = rand()%9;
         grid_y = rand()%9;
 
@@ -78,6 +77,7 @@ void Sudoku::giveQuestion(){
     }
 }
 
+//把數獨的map輸出
 void Sudoku::display(){
 
     for(int i=0;i<9;i++){
@@ -89,7 +89,7 @@ void Sudoku::display(){
 
 }
 
-
+//把數獨的map輸出
 void Sudoku::display(int a[9][9]){
 
     for(int i=0;i<9;i++){
@@ -124,6 +124,7 @@ void Sudoku::swaps(int a[]){
     }
 }
 
+//解題前的初始化，把solved times 社為0，並且計算有幾個空格
 void Sudoku::initialize(){
 
     solvedTimes=0;
@@ -439,14 +440,16 @@ int Sudoku::findValue(int a[],int row, int col){
 
     }
 
+//程式解題精隨所在，利用backtracking recursive
 void Sudoku::answer(){
 
-    int blankRow;
-    int blankCol;
+    int blankRow;//存放某次 function call裡找到的下一個空格 row
+    int blankCol;//column
+
     int i,j;
     bool getOut;
     int possibleValues[9] ={0};
-    int possibleNum;
+    int possibleNum;//找到的下一個空格可填入數字的可解數量
 
     //check 是否是滿的，也就是成功的意思
 
@@ -458,8 +461,6 @@ void Sudoku::answer(){
                 copy[i][j] = map[i][j];
 
         }
-
-
         return;
 
     }
@@ -482,7 +483,6 @@ void Sudoku::answer(){
 
         blankRow = i;
         blankCol =j;
-
 
     ///////////////////////////////////////////////////////////////////////
         possibleNum = findValue(possibleValues,blankRow,blankCol);
@@ -513,11 +513,6 @@ void Sudoku::answer(){
         return;
 
 
-
-
-
-
-
         }
 
 
@@ -527,24 +522,25 @@ void Sudoku::solve(){
 
     initialize();
 
+    //read近來的格式不正確，就將solvedtimes設為0
     if(!isCorrect())
        solvedTimes =0;
 
     else
         answer();
 
-
+    //無解輸出0
     if(solvedTimes==0){
             printf("%d",0);
 
     }
-
+    //有單一解，輸出1,整個答案
     else if(solvedTimes ==1){
             printf("%c%c",'1','\n');
             display(copy);
 
           }
-
+    //多解輸出2
     else if(solvedTimes>1)
             printf("%c",'2');
 

@@ -23,14 +23,12 @@ public:
 
 private:
 
-    int read[81];
-    int map[9][9];
-    int solvedTimes;
-    int left ;
-    int testleft;
-    int copy[9][9];
-    bool solvedFlag;
-    int copy2[9][9];
+    int read[81];//輸入檔案使用
+    int map[9][9];//待解的數獨棋盤
+    int solvedTimes;//成功解過的次數
+    int left ;//還剩幾個空格
+    int copy[9][9];//複製map使用
+
 
 
 
