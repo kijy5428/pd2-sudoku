@@ -59,7 +59,7 @@ void Sudoku::giveQuestion(){
     int grid_y;
 
     //«õ74­Ó¬}
-    for(int i=0;i<65;i++){
+    for(int i=0;i<73;i++){
         grid_x = rand()%9;
         grid_y = rand()%9;
 
